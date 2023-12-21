@@ -47,7 +47,6 @@ namespace MailService.Messaging
 
         private Task ErrorHandler(ProcessErrorEventArgs arg)
         {
-
             //send Email to Admin 
              return Task.CompletedTask;
         }
@@ -63,14 +62,12 @@ namespace MailService.Messaging
             {
 
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("<img src=\"https://cdn.pixabay.com/photo/2016/01/02/16/53/lion-1118467_640.jpg\" width=\"1000\" height=\"600\">");
+                stringBuilder.Append("<img src=\"https://cdn.pixabay.com/photo/2013/07/13/09/51/drink-156144_1280.png\" width=\"800\" height=\"500\">");
                 stringBuilder.Append("<h1> Hello " + user.Name + "</h1>");
-                stringBuilder.AppendLine("<br/>Welcome to T2G Safaris");
-
+                stringBuilder.AppendLine("<br/>Welcome to BlogMS App");
                 stringBuilder.Append("<br/>");
                 stringBuilder.Append('\n');
-                stringBuilder.Append("<p>Start your First Adventure!!</p>");
-
+                stringBuilder.Append("<p>Catch all newsbreak as they happen!!</p>");
                 await _emailService.sendEmail(user, stringBuilder.ToString());
 
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MailService.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231219112320_EmailLoggers")]
-    partial class EmailLoggers
+    [Migration("20231221070655_maildb")]
+    partial class maildb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

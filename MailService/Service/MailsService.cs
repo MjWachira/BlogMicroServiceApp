@@ -23,11 +23,11 @@ namespace MailService.Service
         {
             MimeMessage message1 = new MimeMessage();
 
-            message1.From.Add(new MailboxAddress("Safari ", _email));
+            message1.From.Add(new MailboxAddress("BlogMS ", _email));
 
             message1.To.Add(new MailboxAddress(user.Name, user.Email));
 
-            message1.Subject = "Welcome to The Safaris";
+            message1.Subject = "Welcome to The BlogMSApp";
 
             var body = new TextPart("html")
             {
