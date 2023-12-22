@@ -1,3 +1,4 @@
+using CommentService.Extensions;
 using Microsoft.EntityFrameworkCore;
 using PostService.Data;
 using PostService.Services;
@@ -21,6 +22,10 @@ builder.Services.AddScoped<IPost, PostServices>();
 
 //Register AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//Custom Services-Extension Folder
+builder.AddAuth();
+builder.AddSwaggenGenExtension();
 
 var app = builder.Build();
 

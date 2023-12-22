@@ -36,9 +36,6 @@ namespace MailService.Service
 
             message1.Body = body;
 
-
-            ///
-
             var client = new SmtpClient();
             client.Connect("smtp.gmail.com", 587, false);
 

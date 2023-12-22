@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostService.Models;
 using PostService.Models.Dtos;
 using PostService.Services.IServices;
+using System.Security.Claims;
 
 namespace PostService.Controllers
 {
@@ -28,13 +30,33 @@ namespace PostService.Controllers
             return Ok(_response);
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>> AddPost(AddPostDto addPostDto)
         {
+            var Id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+           // var list = User.Claims.ToList();
+            //var Id = list[1].Value;
+            Console.WriteLine(Id);
+
             var post = _mapper.Map<Post>(addPostDto);
+
+            post.userId = Id;
+
             var response = await _postservice.AddPost(post);
+            
             _response.Result = response;
             return Created("",_response);
         }
+        [HttpGet("All Posts for logedin user")]
+        public async Task<ActionResult<ResponseDto>> GetUserPosts()
+        {
+            var Id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var posts = await _postservice.GetUserPosts(Id);
+            _response.Result = posts;
+            return Ok(_response);
+        }
+
         [HttpGet("Id")]
         public async Task<ActionResult<ResponseDto>> GetPost(Guid Id)
         {
@@ -49,6 +71,7 @@ namespace PostService.Controllers
         }
 
         [HttpPut("{Id}")]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>> UpdatePost(Guid Id, AddPostDto UPost)
         {
             var post = await _postservice.GetPost(Id);
@@ -65,6 +88,7 @@ namespace PostService.Controllers
         }
 
         [HttpDelete("{Id}")]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>>DeletePost(Guid Id)
         {
             var post = await _postservice.GetPost(Id);

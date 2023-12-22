@@ -37,6 +37,11 @@ namespace PostService.Services
             return await _context.Post.Where(b=>b.Id == Id).FirstOrDefaultAsync();   
         }
 
+        public async Task<List<Post>> GetUserPosts(string userId)
+        {
+           return await _context.Post.Where(b => b.userId == userId).ToListAsync();
+        }
+
         public async Task<string> UpdatePost()
         {
             await _context.SaveChangesAsync();

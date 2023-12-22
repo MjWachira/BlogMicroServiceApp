@@ -69,7 +69,7 @@ namespace AuthService.Controllers
             _response.IsSuccess = false;
             return BadRequest(_response);
         }
-
+        /*
         [HttpPost("AssignRole")]
         public async Task<ActionResult<ResponseDto>> AssignRole(AssignRoleDto role)
         {
@@ -86,6 +86,6 @@ namespace AuthService.Controllers
             _response.Result = res;
             _response.IsSuccess = false;
             return BadRequest(_response);
-        }
+        }*/
     }
 }

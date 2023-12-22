@@ -10,5 +10,6 @@ namespace PostService.Services.IServices
         Task<string> AddPost(Post post);
         Task<string> UpdatePost();
         Task<string> DeletePost(Post post);
+        Task<List<Post>> GetUserPosts(string userId);
     }
 }
